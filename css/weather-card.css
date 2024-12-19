@@ -1,0 +1,93 @@
+.cardContainer {
+    width: 100%;
+    max-width: 400px;
+}
+
+.card {
+    padding: 2rem;
+    backdrop-filter: blur(30px);
+    background-color: rgba(65, 65, 65, 0.308);
+    border: 1px solid rgba(255, 255, 255, 0.089);
+    border-radius: 10px;
+}
+
+.city {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.weather {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+#weather-icon {
+    width: 50px;
+    height: 50px;
+    margin: 1rem 0;
+}
+
+.temp {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: var(--accent-color);
+}
+
+.minmaxContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.min, .max {
+    text-align: center;
+}
+
+.minHeading, .maxHeading {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+}
+
+.minTemp, .maxTemp {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* Loading and Error States */
+.card.loading {
+    opacity: 0.7;
+}
+
+.card.error {
+    border-color: rgba(255, 0, 0, 0.2);
+}
+
+#weather-desc.error {
+    color: rgb(255, 100, 100);
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 1.5rem;
+    }
+
+    .city {
+        font-size: 1.2rem;
+    }
+
+    .temp {
+        font-size: 2.5rem;
+    }
+
+    .minTemp, .maxTemp {
+        font-size: 1rem;
+    }
+}

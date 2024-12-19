@@ -1,0 +1,145 @@
+.whiteboard-container {
+    background: var(--surface-dark);
+    border-radius: 15px;
+    padding: 1rem;
+    padding-top: 2rem;
+    margin-top: 2rem;
+}
+
+.light-mode .whiteboard-container {
+    background: var(--surface-light);
+}
+
+.toolbar {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(76, 84, 175, 0.1);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.tool-btn {
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.light-mode .tool-btn {
+    color: var(--text-light);
+}
+
+.tool-btn:hover {
+    background: rgba(76, 84, 175, 0.2);
+}
+
+.tool-btn.active {
+    background: rgba(76, 84, 175, 0.3);
+    color: #4c54af;
+}
+
+#color-picker {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#size-slider {
+    width: 100px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: rgba(76, 84, 175, 0.2);
+    border-radius: 2px;
+}
+
+#size-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #4c54af;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#whiteboard {
+    width: 100%;
+    height: 500px;
+    background: white;
+    border-radius: 10px;
+    cursor: crosshair;
+}
+
+/* Text tool styles */
+.text-input {
+    position: absolute;
+    background: transparent;
+    border: 1px dashed #4c54af;
+    outline: none;
+    font-family: Arial, sans-serif;
+    display: none;
+    padding: 5px;
+    min-width: 50px;
+    color: black;
+}
+
+.text-box {
+    position: absolute;
+    background: transparent;
+    border: 1px solid rgba(76, 84, 175, 0.2);
+    border-radius: 5px;
+    padding: 8px;
+    min-width: 100px;
+    min-height: 30px;
+    resize: both;
+    overflow: auto;
+    cursor: move;
+}
+
+.text-box textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    resize: none;
+    font-family: Arial, sans-serif;
+    color: var(--text-dark);
+}
+
+.text-box .delete-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    display: none;
+}
+
+.text-box:hover .delete-btn {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .toolbar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    #whiteboard {
+        height: 400px;
+    }
+}

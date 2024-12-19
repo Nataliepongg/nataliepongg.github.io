@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whiteboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/whiteboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- At the top of the body in both files -->
+    <div id="navbar-placeholder"></div>
+    
+    <!-- Whiteboard Container -->
+    <div class="container">
+        <div class="whiteboard-container">
+            <div class="toolbar">
+                <button id="pen-tool" class="tool-btn active">
+                    <i class="fas fa-pen"></i>
+                </button>
+                <button id="eraser-tool" class="tool-btn">
+                    <i class="fas fa-eraser"></i>
+                </button>
+                <button id="add-textbox" class="tool-btn">
+                    <i class="fas fa-sticky-note"></i> Add Note
+                </button>
+                <input type="color" id="color-picker" value="#000000">
+                <input type="range" id="size-slider" min="1" max="50" value="5">
+                <button id="clear-board" class="tool-btn">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <input type="text" class="text-input" id="text-input">
+            <canvas id="whiteboard"></canvas>
+        </div>
+    </div>
+
+    <!-- At the bottom of the body in both files -->
+    <script src="js/include.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            ComponentLoader.loadComponent('navbar-placeholder', 'components/navbar.html');
+        });
+    </script>
+    <script src="js/whiteboard.js"></script>
+</body>
+</html>
