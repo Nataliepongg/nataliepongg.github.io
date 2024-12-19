@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natalie Pong - Personal Website</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+   <!-- Navbar placeholder -->
+   <div id="navbar-placeholder"></div>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome, I'm [ Natalie Pong ]</h1>
+            <p>Student | Developer | Creator</p>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>I'm a computer science student, currently studying at King's College London.</p>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="images/beetle.jpg" alt="Project 1">
+                <div class="project-info">
+                    <h3>Code Tutors application</h3>
+                    <p>A web-based tutoring platform for seamless communication between students, tutors, and admins. </p>
+                    <a href="https://nataliepong.pythonanywhere.com/" target="_blank" class="project-link">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-content">
+            <form id="contact-form" action="https://formsubmit.co/95baf27dbf19485e5c8a657d1f0b3fde" method="POST">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Message" required></textarea>
+                <button type="submit" id="submit-btn">Send Message</button>
+                <div id="confirmation-message" class="confirmation-message hidden">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Message sent successfully!</p>
+                </div>
+                <div id="error-message" class="error-message hidden">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Oops! Something went wrong. Please try again.</p>
+                </div>
+                <!-- Redirect after submission -->
+                <input type="hidden" name="_next" value="https://yourwebsite.com?submitted=true">
+                <!-- Prevent spam -->
+                <input type="hidden" name="_captcha" value="false">
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/Nataliepongg" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://instagram.com/nataliepongg" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script src="js/include.js"></script>
+    <script>
+        // Load navbar when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            ComponentLoader.loadComponent('navbar-placeholder', 'components/navbar.html');
+        });
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

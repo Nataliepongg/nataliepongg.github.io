@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer - Natalie Pong</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pomodoro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- At the top of the body in both files -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="pomodoro-container">
+        <div class="timer-section">
+            <h1>Pomodoro Timer</h1>
+            
+            <div class="timer-display">
+                <span id="minutes">25</span>:<span id="seconds">00</span>
+            </div>
+
+            <div class="timer-controls">
+                <button id="start-btn">Start</button>
+                <button id="pause-btn" disabled>Pause</button>
+                <button id="reset-btn">Reset</button>
+            </div>
+
+            <div class="timer-settings">
+                <div class="setting">
+                    <label>Work Duration (minutes):</label>
+                    <input type="number" id="work-duration" value="25" min="1" max="60">
+                </div>
+                <div class="setting">
+                    <label>Break Duration (minutes):</label>
+                    <input type="number" id="break-duration" value="5" min="1" max="30">
+                </div>
+            </div>
+
+            <div class="timer-status">
+                <p id="status-text">Ready to start working!</p>
+                <p id="cycle-count">Pomodoros completed: 0</p>
+            </div>
+        </div>
+
+        <div class="music-section">
+            <h2>Study Music</h2>
+            <iframe src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM" 
+                    width="100%" 
+                    height="380" 
+                    frameborder="0" 
+                    allowtransparency="true" 
+                    allow="encrypted-media">
+            </iframe>
+        </div>
+    </div>
+
+     <!-- At the bottom of the body in both files -->
+     <script src="js/include.js"></script>
+     <script>
+         document.addEventListener('DOMContentLoaded', () => {
+             ComponentLoader.loadComponent('navbar-placeholder', 'components/navbar.html');
+         });
+     </script>
+    <script src="js/pomodoro.js"></script>
+</body>
+</html>
