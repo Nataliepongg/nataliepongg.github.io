@@ -3,11 +3,12 @@ class Tetris {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
         this.scoreElement = document.getElementById('tetris-score');
+        this.topScoreElement = document.getElementById('tetris-top-score'); // Element to show the top score
         
         // Game dimensions
         this.cols = 10;
         this.rows = 20;
-        this.cellSize = 36; // Increased cell size
+        this.cellSize = 36;
         
         // Set canvas size
         this.canvas.width = this.cols * this.cellSize;
@@ -16,10 +17,11 @@ class Tetris {
         // Game state
         this.grid = Array(this.rows).fill().map(() => Array(this.cols).fill(0));
         this.score = 0;
+        this.topScore = this.getTopScore(); // Get the top score from localStorage
         this.isGameOver = false;
         this.isPaused = false;
         this.dropCounter = 0;
-        this.dropInterval = 1000; // Start with 1 second interval
+        this.dropInterval = 1000;
         this.lastTime = 0;
         
         // Current piece
@@ -31,13 +33,13 @@ class Tetris {
         this.setupControls();
         this.colors = [
             null,
-            '#FF0D72', // T
-            '#0DC2FF', // I
-            '#0DFF72', // O
-            '#F538FF', // L
-            '#FF8E0D', // J
-            '#FFE138', // S
-            '#3877FF'  // Z
+            '#FF0D72',
+            '#0DC2FF',
+            '#0DFF72',
+            '#F538FF',
+            '#FF8E0D',
+            '#FFE138',
+            '#3877FF'
         ];
         
         this.pieces = {
@@ -77,6 +79,18 @@ class Tetris {
                 [0, 0, 0]
             ]
         };
+    }
+
+    // Method to retrieve the top score from localStorage
+    getTopScore() {
+        return localStorage.getItem('topScore') ? parseInt(localStorage.getItem('topScore')) : 0;
+    }
+
+    // Method to update the top score in localStorage
+    setTopScore(score) {
+        localStorage.setItem('topScore', score);
+        this.topScore = score;
+        this.topScoreElement.textContent = `Top Score: ${this.topScore}`; // Update displayed top score
     }
 
     resize() {
@@ -216,6 +230,11 @@ class Tetris {
             this.score += [40, 100, 300, 1200][linesCleared - 1] * (Math.floor(this.score / 500) + 1);
             this.scoreElement.textContent = this.score;
             this.dropInterval = Math.max(300, 1000 - (Math.floor(this.score / 500) * 100));
+
+            // Update top score if the current score is higher
+            if (this.score > this.topScore) {
+                this.setTopScore(this.score);
+            }
         }
     }
 
