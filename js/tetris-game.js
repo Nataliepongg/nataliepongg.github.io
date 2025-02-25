@@ -205,7 +205,6 @@ class Tetris {
         
         for (let y = this.rows - 1; y >= 0; y--) {
             if (this.grid[y].every(value => value !== 0)) {
-                // Remove the line
                 const row = this.grid.splice(y, 1)[0];
                 this.grid.unshift(row.fill(0));
                 linesCleared++;
@@ -216,7 +215,7 @@ class Tetris {
         if (linesCleared > 0) {
             this.score += [40, 100, 300, 1200][linesCleared - 1] * (Math.floor(this.score / 500) + 1);
             this.scoreElement.textContent = this.score;
-            this.dropInterval = Math.max(100, 1000 - (Math.floor(this.score / 500) * 100));
+            this.dropInterval = Math.max(300, 1000 - (Math.floor(this.score / 500) * 100));
         }
     }
 
