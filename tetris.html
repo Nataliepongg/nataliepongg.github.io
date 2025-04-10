@@ -132,6 +132,11 @@
             font-weight: bold;
         }
 
+        /* Add focus style for game container */
+        .game-container.game-active {
+            outline: 3px solid rgba(88, 103, 221, 0.5);
+        }
+
         @media (max-width: 768px) {
             .game-container {
                 flex-direction: column;
@@ -158,7 +163,7 @@
     <div id="navbar-placeholder"></div>
 
     <section class="game-section">
-        <div class="game-container">
+        <div class="game-container" id="game-container" tabindex="0">
             <div class="canvas-container">
                 <canvas id="tetris-canvas"></canvas>
                 <div class="grid-overlay">
@@ -199,11 +204,15 @@
         document.addEventListener('DOMContentLoaded', () => {
             ComponentLoader.loadComponent('navbar-placeholder', 'components/navbar.html');
             setupGame();
+            setupKeyboardControls();
         });
 
+        let gameActive = false;
+        
         function setupGame() {
             const startBtn = document.getElementById('start-btn');
             const pauseBtn = document.getElementById('pause-btn');
+            const gameContainer = document.getElementById('game-container');
             
             startBtn.addEventListener('click', () => {
                 if (tetrisGame && tetrisGame.isGameOver) {
@@ -214,12 +223,50 @@
                 }
                 startBtn.textContent = 'Restart';
                 pauseBtn.disabled = false;
+                gameActive = true;
+                gameContainer.classList.add('game-active');
+                gameContainer.focus(); // Focus the game container to capture keyboard events
             });
 
             pauseBtn.addEventListener('click', () => {
                 if (tetrisGame) {
                     tetrisGame.togglePause();
                     pauseBtn.textContent = tetrisGame.isPaused ? 'Resume' : 'Pause';
+                    gameActive = !tetrisGame.isPaused;
+                    if (gameActive) {
+                        gameContainer.classList.add('game-active');
+                        gameContainer.focus();
+                    } else {
+                        gameContainer.classList.remove('game-active');
+                    }
+                }
+            });
+
+            // Focus game container on click to ensure it captures keyboard events
+            gameContainer.addEventListener('click', () => {
+                if (gameActive) {
+                    gameContainer.focus();
+                }
+            });
+        }
+
+        function setupKeyboardControls() {
+            // Prevent default arrow key behavior when game is active
+            window.addEventListener('keydown', function(e) {
+                if (gameActive && 
+                    (e.code === 'ArrowUp' || 
+                     e.code === 'ArrowDown' || 
+                     e.code === 'ArrowLeft' || 
+                     e.code === 'ArrowRight' || 
+                     e.code === 'Space')) {
+                    e.preventDefault();
+                }
+            });
+
+            // Keep focus on game container when window is resized
+            window.addEventListener('resize', function() {
+                if (gameActive) {
+                    document.getElementById('game-container').focus();
                 }
             });
         }
