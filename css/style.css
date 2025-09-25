@@ -272,6 +272,7 @@ body {
     height: 220px;
     object-fit: cover;
     display: block;
+    margin-bottom: 1.25rem;
 }
 
 .image-card h4 {
