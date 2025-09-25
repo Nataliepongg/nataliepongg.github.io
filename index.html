@@ -44,6 +44,18 @@
         </div>
     </div>
 
+    <!-- Extracurriculars Modal -->
+    <div id="extracurriculars-modal" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="extracurriculars-modal-title">
+        <div class="modal-backdrop" data-close="true"></div>
+        <div class="modal-card" role="document">
+            <button class="modal-close" aria-label="Close" data-close="true">×</button>
+            <h3 id="extracurriculars-modal-title">Beyond the Classroom</h3>
+            <div class="modal-content">
+                <p>Beyond my academic and organizational commitments, I enjoy a diverse range of hobbies including cooking and baking, staying active through biking and swimming, exploring my creative side through music production and DJing, and unwinding with board, card, and video games with friends. During holiday breaks, I prioritize quality time with family and exploring new cultures through travel.</p>
+            </div>
+        </div>
+    </div>
+
     <section id="about" class="about">
         <div class="about-header">
             <h2>About Me</h2>
@@ -86,10 +98,11 @@
                     <button class="cta-button story-readmore" type="button">Read more</button>
                 </div>
                 
-                <div class="about-card">
+                <div class="about-card" id="extracurriculars-card">
                     <div class="card-icon">🚀</div>
                     <h4>Extracurriculars</h4>
-                    <p>In my free time, I've taken on leadership roles in student societies, serving as Head of Partnerships for KCL Tech Society and previously as Secretary for KCL Association of British and Chinese University Students (ABACUS). Beyond my academic and organizational commitments, I enjoy a diverse range of hobbies including cooking and baking, staying active through biking and swimming, exploring my creative side through music production and DJing, and unwinding with board, card, and video games with friends. During holiday breaks, I prioritize quality time with family and exploring new cultures through travel.</p>
+                    <p>In my free time, I've taken on leadership roles in student societies, serving as Head of Partnerships for KCL Tech Society and previously as Secretary for KCL Association of British and Chinese University Students (ABACUS).</p>
+                    <button class="cta-button extracurriculars-readmore" type="button">Read more</button>
                 </div>
             </div>
             
@@ -162,14 +175,41 @@
         // Load navbar when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             ComponentLoader.loadComponent('navbar-placeholder', 'components/navbar.html');
-            // Story modal
-            const openBtn = document.querySelector('.story-readmore');
-            const modal = document.getElementById('story-modal');
-            function openModal(){ modal.classList.remove('hidden'); modal.setAttribute('aria-hidden','false'); }
-            function closeModal(){ modal.classList.add('hidden'); modal.setAttribute('aria-hidden','true'); }
-            openBtn?.addEventListener('click', openModal);
-            modal?.addEventListener('click', (e) => { if (e.target.dataset.close !== undefined) closeModal(); });
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+            
+            // Modal functionality
+            function setupModal(openBtnSelector, modalId) {
+                const openBtn = document.querySelector(openBtnSelector);
+                const modal = document.getElementById(modalId);
+                if (!openBtn || !modal) return;
+                
+                function openModal(){ 
+                    modal.classList.remove('hidden'); 
+                    modal.setAttribute('aria-hidden','false'); 
+                }
+                function closeModal(){ 
+                    modal.classList.add('hidden'); 
+                    modal.setAttribute('aria-hidden','true'); 
+                }
+                
+                openBtn.addEventListener('click', openModal);
+                modal.addEventListener('click', (e) => { 
+                    if (e.target.dataset.close !== undefined) closeModal(); 
+                });
+            }
+            
+            // Setup both modals
+            setupModal('.story-readmore', 'story-modal');
+            setupModal('.extracurriculars-readmore', 'extracurriculars-modal');
+            
+            // Global escape key handler
+            document.addEventListener('keydown', (e) => { 
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal:not(.hidden)').forEach(modal => {
+                        modal.classList.add('hidden');
+                        modal.setAttribute('aria-hidden','true');
+                    });
+                }
+            });
         });
     </script>
     <script src="js/script.js"></script>
