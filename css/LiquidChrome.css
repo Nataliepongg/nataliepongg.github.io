@@ -5,6 +5,9 @@
     height: 100%;
     z-index: 0;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Ensure the hero acts as the positioning context */
@@ -26,4 +29,6 @@
     width: 100% !important;
     height: 100% !important;
     display: block;
+    z-index: 0;
+    pointer-events: none;
 }
