@@ -2,16 +2,31 @@
 (function () {
     function initLiquidChrome() {
         var container = document.getElementById('liquid-chrome-container');
-        if (!container || !window.OGL) return;
+        if (!container) {
+            console.error('[LiquidChrome] Container not found: #liquid-chrome-container');
+            return;
+        }
+        if (!window.OGL) {
+            console.error('[LiquidChrome] OGL library not found on window. Check CDN load.');
+            container.style.background = 'radial-gradient(1200px 600px at 50% 0%, rgba(122,162,255,0.12), rgba(0,0,0,0))';
+            return;
+        }
 
         var Renderer = window.OGL.Renderer;
         var Program = window.OGL.Program;
         var Mesh = window.OGL.Mesh;
         var Triangle = window.OGL.Triangle;
 
-        var renderer = new Renderer({ antialias: true });
+        var renderer;
+        try {
+            renderer = new Renderer({ antialias: true, alpha: true, premultipliedAlpha: true });
+        } catch (e) {
+            console.error('[LiquidChrome] Failed to create WebGL renderer:', e);
+            container.style.background = 'radial-gradient(1200px 600px at 50% 0%, rgba(122,162,255,0.12), rgba(0,0,0,0))';
+            return;
+        }
         var gl = renderer.gl;
-        gl.clearColor(1, 1, 1, 1);
+        gl.clearColor(0, 0, 0, 0);
 
         var vertexShader = "\nattribute vec2 position;\nattribute vec2 uv;\nvarying vec2 vUv;\nvoid main() {\n  vUv = uv;\n  gl_Position = vec4(position, 0.0, 1.0);\n}\n";
 
@@ -34,11 +49,13 @@
         var mesh = new Mesh(gl, { geometry: triangle, program: program });
 
         function resize() {
-            renderer.setSize(container.offsetWidth, container.offsetHeight);
+            var w = Math.max(1, container.clientWidth);
+            var h = Math.max(1, container.clientHeight);
+            renderer.setSize(w, h);
             var res = program.uniforms.uResolution.value;
             res[0] = gl.canvas.width;
             res[1] = gl.canvas.height;
-            res[2] = gl.canvas.width / gl.canvas.height;
+            res[2] = gl.canvas.width / Math.max(1, gl.canvas.height);
         }
         window.addEventListener('resize', resize);
         resize();
@@ -62,6 +79,10 @@
         animationId = requestAnimationFrame(update);
 
         container.appendChild(gl.canvas);
+        if (!gl || gl.isContextLost && gl.isContextLost()) {
+            console.warn('[LiquidChrome] WebGL context lost or unavailable. Showing fallback background.');
+            container.style.background = 'radial-gradient(1200px 600px at 50% 0%, rgba(122,162,255,0.12), rgba(0,0,0,0))';
+        }
     }
 
     if (document.readyState === 'loading') {
