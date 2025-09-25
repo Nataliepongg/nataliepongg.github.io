@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/weather-card.css">
-    <link rel="stylesheet" href="css/LiquidChrome.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -17,18 +17,16 @@
    <div id="navbar-placeholder"></div>
 
     <section id="home" class="hero">
-        <div id="liquid-chrome-container" class="liquid-chrome-container">
-            <div class="hero-card">
-                <div class="card-front">
-                    <h1>Welcome, I'm</h1>
-                    <div class="name-reveal">[ Natalie Pong ]</div>
-                </div>
-                <div class="card-back">
-                    <div class="roles">
-                        <span>Student</span>
-                        <span>Developer</span>
-                        <span>Creator</span>
-                    </div>
+        <div class="hero-card">
+            <div class="card-front">
+                <h1>Welcome, I'm</h1>
+                <div class="name-reveal">[ Natalie Pong ]</div>
+            </div>
+            <div class="card-back">
+                <div class="roles">
+                    <span>Student</span>
+                    <span>Developer</span>
+                    <span>Creator</span>
                 </div>
             </div>
         </div>
@@ -98,8 +96,7 @@
     </footer>
 
     <script src="js/include.js"></script>
-    <!-- Liquid Chrome initializer (ESM import of OGL to satisfy CSP) -->
-    <script type="module" src="js/liquid-chrome.js"></script>
+    
     <script>
         // Load navbar when the page loads
         document.addEventListener('DOMContentLoaded', () => {
