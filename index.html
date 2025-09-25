@@ -32,6 +32,18 @@
         </div>
     </section>
 
+    <!-- Story Modal -->
+    <div id="story-modal" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="story-modal-title">
+        <div class="modal-backdrop" data-close="true"></div>
+        <div class="modal-card" role="document">
+            <button class="modal-close" aria-label="Close" data-close="true">×</button>
+            <h3 id="story-modal-title">ITR: From Confusion to Confidence</h3>
+            <div class="modal-content">
+                <p>One of my favorite modules has been the Introduction to Robotics (ITR). When I first encountered the Robot Operating System (ROS), it felt completely foreign and overwhelming—I scored a disappointing mark on my first coursework (thankfully only worth 10% of the grade!). But this initial setback fueled my determination. Through persistent effort and countless hours in the KCL Labs, I gradually mastered the system's complexities and learned to navigate various obstacles with increasing confidence. The challenging journey made my final achievement even more satisfying—scoring over 85% on the final coursework! This experience taught me that initial struggles often lead to the most rewarding growth. Here's a picture of me working in the labs - probably sent to my mum while she called on the weekends.</p>
+            </div>
+        </div>
+    </div>
+
     <section id="about" class="about">
         <div class="about-header">
             <h2>About Me</h2>
@@ -67,9 +79,10 @@
                     <p>Pursuing my Computer Science degree at King's College London, specializing in software engineering.</p>
                 </div>
                 
-                <div class="about-card image-card">
-                    <img src="images/ITR.JPG" alt="ITR placeholder" class="about-photo" />
-                    <p>One of my favorite modules has been the Introduction to Robotics (ITR). When I first encountered the Robot Operating System (ROS), it felt completely foreign and overwhelming—I scored a disappointing mark on my first coursework (thankfully only worth 10% of the grade!). But this initial setback fueled my determination. Through persistent effort and countless hours in the KCL Labs, I gradually mastered the system's complexities and learned to navigate various obstacles with increasing confidence. The challenging journey made my final achievement even more satisfying—scoring over 85% on the final coursework! This experience taught me that initial struggles often lead to the most rewarding growth. Here's a picture of me working in the labs - probably sent to my mum while she called on the weekends.</p>
+                <div class="about-card image-card" id="story-card">
+                    <h4>Personal Story</h4>
+                    <img src="images/ITR.JPG" alt="ITR lab photo" class="about-photo" />
+                    <button class="cta-button story-readmore" type="button">Read more</button>
                 </div>
                 
                 <div class="about-card">
@@ -148,6 +161,14 @@
         // Load navbar when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             ComponentLoader.loadComponent('navbar-placeholder', 'components/navbar.html');
+            // Story modal
+            const openBtn = document.querySelector('.story-readmore');
+            const modal = document.getElementById('story-modal');
+            function openModal(){ modal.classList.remove('hidden'); modal.setAttribute('aria-hidden','false'); }
+            function closeModal(){ modal.classList.add('hidden'); modal.setAttribute('aria-hidden','true'); }
+            openBtn?.addEventListener('click', openModal);
+            modal?.addEventListener('click', (e) => { if (e.target.dataset.close !== undefined) closeModal(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
         });
     </script>
     <script src="js/script.js"></script>
