@@ -269,6 +269,7 @@ body {
 
 .image-card .card-icon {
     display: block;
+    margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
 
@@ -337,7 +338,8 @@ body {
     padding: 0 1.25rem 1.5rem;
 }
 
-.story-readmore {
+.story-readmore,
+.extracurriculars-readmore {
     margin-bottom: 1.5rem;
 }
 
