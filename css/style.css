@@ -200,6 +200,7 @@ body {
     font-size: 2rem;
     margin-bottom: 1rem;
     color: var(--text);
+    text-align: center;
 }
 
 .intro-text p {
@@ -207,6 +208,8 @@ body {
     line-height: 1.7;
     color: var(--text-muted);
     max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .intro-stats {
@@ -258,6 +261,25 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+}
+.image-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.image-card .about-photo {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.image-card h4 {
+    padding: 1rem 1.25rem 0.5rem;
+}
+
+.image-card p {
+    padding: 0 1.25rem 1.5rem;
 }
 
 .about-card::before {
