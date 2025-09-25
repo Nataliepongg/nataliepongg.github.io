@@ -332,6 +332,10 @@ body {
     padding: 0 1.25rem 1.5rem;
 }
 
+.story-readmore {
+    margin-bottom: 1.5rem;
+}
+
 .about-card::before {
     content: '';
     position: absolute;
