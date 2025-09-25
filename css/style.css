@@ -269,7 +269,7 @@ body {
 
 .image-card .card-icon {
     display: block;
-    margin-top: 1rem;
+    margin-top: 1.75rem; /* align with other cards' top spacing */
     margin-bottom: 0.5rem;
 }
 
@@ -341,6 +341,10 @@ body {
 .story-readmore,
 .extracurriculars-readmore {
     margin-bottom: 1.5rem;
+}
+
+.extracurriculars-readmore {
+    margin-top: 0.75rem; /* add top spacing for button */
 }
 
 .about-card::before {
